@@ -9,10 +9,23 @@ def readplos(fi):
             s =  str(k).ljust(7," ")
             kol = len(ms)
             for i in range(kol-1):
-                s =  s + " # " + ms[i]
+                s =  s + "<>" + ms[i]
             txt.append(s+'\n')
     return txt
-
+#--------------------------------
+def readplosline(fi,numberstr):
+    print(f"Открываем файла {fi}")
+    st = []
+    k = 0
+    with open(fi, 'r',encoding='cp866') as file:
+        for line in file:
+            k = k + 1
+            if k == numberstr:
+                ms = line.split('\x1d')
+                kol = len(ms)
+                for i in range(kol-1):
+                    st.append(ms[i]+'\n')
+    return st
 #--------------------------------
 def txtwrite(path,txt):
     e = 1
